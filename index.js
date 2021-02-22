@@ -3,26 +3,14 @@ const client = new Discord.Client();
 const ayarlar = require('./ayarlar.json');
 const chalk = require('chalk');
 const moment = require('moment');
-
 const { Client, Util } = require('discord.js');
 const fs = require('fs');
 const db = require('wio.db');
 const http = require('http');
-const express = require('express');
 require('./util/eventLoader')(client);
 const path = require('path');
 const request = require('request');
 const queue = new Map();
-
-const app = express();
-app.get("/", (request, response) => {
-  console.log(Date.now() + " Ping tamamdır.");
-  response.sendStatus(200);
-});
-app.listen(process.env.PORT);
-setInterval(() => {
-  http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
-}, 280000);
 
 var prefix = ayarlar.prefix;
 
@@ -121,3 +109,4 @@ client.on('error', e => {
 });
 
 client.login(ayarlar.token);
+
